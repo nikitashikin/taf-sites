@@ -1,94 +1,56 @@
 package by.itacademy.shikinnikita.taf.sites;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class PizzatempoTest {
+    ChromeDriver driver;
+    PizzatempoPage pizzatempoPage;
 
+    @BeforeEach
+    public void WarmUp() {
+        driver = new ChromeDriver();
+        pizzatempoPage = new PizzatempoPage(driver);
+        driver.get("https://www.pizzatempo.by/");
+        driver.manage().window().maximize();
+    }
 
     @Test
     public void TestWithEmptyEmailAndPassword() {
-        ChromeDriver driver = new ChromeDriver();
-        PizzatempoPage pizzatempoPage = new PizzatempoPage();
-        driver.get("https://www.pizzatempo.by/");
-        driver.manage().window().maximize();
-        WebElement inputEmail = driver.findElement(By.xpath(pizzatempoPage.InputEmailXpath));
-        inputEmail.sendKeys("");
-
-        WebElement inputPassword = driver.findElement(By.xpath(pizzatempoPage.InputPasswordXpah));
-        inputPassword.sendKeys("");
-
-        WebElement buttonEnter = driver.findElement(By.xpath(pizzatempoPage.ButtonEnterXpath));
-        buttonEnter.click();
-        driver.quit();
+        pizzatempoPage.clickButtonEnter();
     }
 
     @Test
     public void TestWithIncorrectEmail() {
-        ChromeDriver driver = new ChromeDriver();
-        PizzatempoPage pizzatempoPage = new PizzatempoPage();
-        driver.get("https://www.pizzatempo.by/");
-        driver.manage().window().maximize();
-
-        WebElement inputEmail = driver.findElement(By.xpath(pizzatempoPage.InputEmailXpath));
-        inputEmail.sendKeys("mail");
-
-        WebElement buttonEnter = driver.findElement(By.xpath(pizzatempoPage.ButtonEnterXpath));
-        buttonEnter.click();
-        driver.quit();
-
+        pizzatempoPage.sendKeysEmailInputField("mail");
+        pizzatempoPage.clickButtonEnter();
     }
+
     @Test
-    public void TestWithEmptyEmailAndAnyPassword(){
-        ChromeDriver driver = new ChromeDriver();
-        PizzatempoPage pizzatempoPage = new PizzatempoPage();
-        driver.get("https://www.pizzatempo.by/");
-        driver.manage().window().maximize();
-
-        WebElement inputEmail = driver.findElement(By.xpath(pizzatempoPage.InputEmailXpath));
-        inputEmail.sendKeys("");
-
-        WebElement inputPassword = driver.findElement(By.xpath(pizzatempoPage.InputPasswordXpah));
-        inputPassword.sendKeys("123");
-
-        WebElement buttonEnter = driver.findElement(By.xpath(pizzatempoPage.ButtonEnterXpath));
-        buttonEnter.click();
-        driver.quit();
+    public void TestWithEmptyEmailAndAnyPassword() {
+        pizzatempoPage.sendKeysPasswordInputField("123");
+        pizzatempoPage.clickButtonEnter();
     }
+
     @Test
-    public void TestWithCorrectEmailAndEmptyPassword(){
-        ChromeDriver driver = new ChromeDriver();
-        PizzatempoPage pizzatempoPage = new PizzatempoPage();
-        driver.get("https://www.pizzatempo.by/");
-        driver.manage().window().maximize();
-
-        WebElement inputEmail = driver.findElement(By.xpath(pizzatempoPage.InputEmailXpath));
-        inputEmail.sendKeys("test@mail.com)");
-
-        WebElement inputPassword = driver.findElement(By.xpath(pizzatempoPage.InputPasswordXpah));
-        inputPassword.sendKeys("");
-
-        WebElement buttonEnter = driver.findElement(By.xpath(pizzatempoPage.ButtonEnterXpath));
-        buttonEnter.click();
-        driver.quit();
+    public void TestWithCorrectEmailAndEmptyPassword() {
+        pizzatempoPage.sendKeysEmailInputField("test@mail.com");
+        pizzatempoPage.clickButtonEnter();
     }
+
     @Test
     public void TestWithCorrectEmailAndPassword() {
-        ChromeDriver driver = new ChromeDriver();
-        PizzatempoPage pizzatempoPage = new PizzatempoPage();
-        driver.get("https://www.pizzatempo.by/");
-        driver.manage().window().maximize();
+        pizzatempoPage.sendKeysEmailInputField("test@mail.com");
+        pizzatempoPage.sendKeysPasswordInputField("123");
+        pizzatempoPage.clickButtonEnter();
+    }
 
-        WebElement inputEmail = driver.findElement(By.xpath(pizzatempoPage.InputEmailXpath));
-        inputEmail.sendKeys("test@mail.com)");
-
-        WebElement inputPassword = driver.findElement(By.xpath(pizzatempoPage.InputPasswordXpah));
-        inputPassword.sendKeys("123");
-
-        WebElement buttonEnter = driver.findElement(By.xpath(pizzatempoPage.ButtonEnterXpath));
-        buttonEnter.click();
+    @AfterEach
+    public void tearsDown() {
         driver.quit();
     }
-    }
+}
