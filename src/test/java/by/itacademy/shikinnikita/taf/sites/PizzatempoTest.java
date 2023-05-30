@@ -10,6 +10,7 @@ public class PizzatempoTest {
     ChromeDriver driver;
     PizzatempoPage pizzatempoPage;
     Faker faker;
+    PizzaTempoStep pizzaTempoStep;
 
     @BeforeEach
     public void WarmUp() {
@@ -18,6 +19,7 @@ public class PizzatempoTest {
         driver.get("https://www.pizzatempo.by/");
         driver.manage().window().maximize();
         faker = new Faker();
+        pizzaTempoStep = new PizzaTempoStep(driver);
     }
 
     @Test
@@ -27,27 +29,22 @@ public class PizzatempoTest {
 
     @Test
     public void TestWithIncorrectEmail() {
-        pizzatempoPage.sendKeysEmailInputField("mail");
-        pizzatempoPage.clickButtonEnter();
+     pizzaTempoStep.FillLoginFormAndSubmit("mail","");
     }
 
     @Test
     public void TestWithEmptyEmailAndAnyPassword() {
-        pizzatempoPage.sendKeysPasswordInputField(Util.generatePassword());
-        pizzatempoPage.clickButtonEnter();
+        pizzaTempoStep.FillLoginFormAndSubmit("",Util.generatePassword());
     }
 
     @Test
     public void TestWithCorrectEmailAndEmptyPassword() {
-        pizzatempoPage.sendKeysEmailInputField(Util.generateEmail());
-        pizzatempoPage.clickButtonEnter();
+        pizzaTempoStep.FillLoginFormAndSubmit(Util.generateEmail(),"");
     }
 
     @Test
     public void TestWithCorrectEmailAndPassword() {
-        pizzatempoPage.sendKeysEmailInputField(Util.generateEmail());
-        pizzatempoPage.sendKeysPasswordInputField(Util.generatePassword());
-        pizzatempoPage.clickButtonEnter();
+        pizzaTempoStep.FillLoginFormAndSubmit(Util.generateEmail(),Util.generatePassword());
     }
 
     @AfterEach
