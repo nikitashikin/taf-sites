@@ -1,15 +1,15 @@
 package by.itacademy.shikinnikita.taf.sites;
 
+import com.github.javafaker.Faker;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class PizzatempoTest {
     ChromeDriver driver;
     PizzatempoPage pizzatempoPage;
+    Faker faker;
 
     @BeforeEach
     public void WarmUp() {
@@ -17,6 +17,7 @@ public class PizzatempoTest {
         pizzatempoPage = new PizzatempoPage(driver);
         driver.get("https://www.pizzatempo.by/");
         driver.manage().window().maximize();
+        faker = new Faker();
     }
 
     @Test
@@ -32,20 +33,20 @@ public class PizzatempoTest {
 
     @Test
     public void TestWithEmptyEmailAndAnyPassword() {
-        pizzatempoPage.sendKeysPasswordInputField("123");
+        pizzatempoPage.sendKeysPasswordInputField(Util.generatePassword());
         pizzatempoPage.clickButtonEnter();
     }
 
     @Test
     public void TestWithCorrectEmailAndEmptyPassword() {
-        pizzatempoPage.sendKeysEmailInputField("test@mail.com");
+        pizzatempoPage.sendKeysEmailInputField(Util.generateEmail());
         pizzatempoPage.clickButtonEnter();
     }
 
     @Test
     public void TestWithCorrectEmailAndPassword() {
-        pizzatempoPage.sendKeysEmailInputField("test@mail.com");
-        pizzatempoPage.sendKeysPasswordInputField("123");
+        pizzatempoPage.sendKeysEmailInputField(Util.generateEmail());
+        pizzatempoPage.sendKeysPasswordInputField(Util.generatePassword());
         pizzatempoPage.clickButtonEnter();
     }
 
