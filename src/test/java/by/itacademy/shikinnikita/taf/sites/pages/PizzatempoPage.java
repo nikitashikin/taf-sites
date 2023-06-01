@@ -1,4 +1,4 @@
-package by.itacademy.shikinnikita.taf.sites;
+package by.itacademy.shikinnikita.taf.sites.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;

@@ -1,5 +1,8 @@
-package by.itacademy.shikinnikita.taf.sites;
+package by.itacademy.shikinnikita.taf.sites.tests;
 
+import by.itacademy.shikinnikita.taf.sites.pages.PizzatempoPage;
+import by.itacademy.shikinnikita.taf.sites.steps.PizzaTempoStep;
+import by.itacademy.shikinnikita.taf.sites.utils.Util;
 import com.github.javafaker.Faker;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -34,7 +37,7 @@ public class PizzatempoTest {
 
     @Test
     public void TestWithEmptyEmailAndAnyPassword() {
-        pizzaTempoStep.FillLoginFormAndSubmit("",Util.generatePassword());
+        pizzaTempoStep.FillLoginFormAndSubmit("", Util.generatePassword());
     }
 
     @Test

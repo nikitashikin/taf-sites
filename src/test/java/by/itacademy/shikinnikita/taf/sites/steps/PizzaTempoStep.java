@@ -1,5 +1,6 @@
-package by.itacademy.shikinnikita.taf.sites;
+package by.itacademy.shikinnikita.taf.sites.steps;
 
+import by.itacademy.shikinnikita.taf.sites.pages.PizzatempoPage;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class PizzaTempoStep {

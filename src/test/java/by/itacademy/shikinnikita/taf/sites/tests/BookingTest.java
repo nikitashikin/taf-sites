@@ -1,6 +1,6 @@
-package by.itacademy.nikitashikin.taf.sites;
+package by.itacademy.shikinnikita.taf.sites.tests;
 
-import by.itacademy.shikinnikita.taf.sites.BookingPage;
+import by.itacademy.shikinnikita.taf.sites.pages.BookingPage;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
